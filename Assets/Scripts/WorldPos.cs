@@ -14,29 +14,24 @@ public struct WorldPos
         this.z = z;
     }
 
-    public override bool Equals(object obj)
+    public override int GetHashCode()
     {
-        if (!(obj is WorldPos))
-            return false;
+        unchecked
+        {
+            int hash = 47;
 
-        WorldPos pos = (WorldPos)obj;
-        if (pos.x != x || pos.y != y || pos.z != z)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
+            hash = hash * 227 + x.GetHashCode();
+            hash = hash * 227 + y.GetHashCode();
+            hash = hash * 227 + z.GetHashCode();
+
+            return hash;
         }
     }
 
-	public override int GetHashCode() {
-		unchecked {
-			int hash = 47;
-			hash = hash * 227 + x.GetHashCode();
-			hash = hash * 227 + y.GetHashCode();
-			hash = hash * 227 + z.GetHashCode();
-			return hash;
-		}
-	}
+    public override bool Equals(object obj)
+    {
+        if (GetHashCode() == obj.GetHashCode())
+            return true;
+        return false;
+    }
 }
