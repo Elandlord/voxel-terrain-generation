@@ -8,7 +8,7 @@ public class Block
     public enum Direction { north, east, south, west, up, down };
 
     public struct Tile { public int x; public int y;}
-    const float tileSize = 0.25f;
+    const float tileSize = 0.05f;
     public bool changed = true;
 
     //Base block constructor
